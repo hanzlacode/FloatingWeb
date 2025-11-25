@@ -1,34 +1,37 @@
 🚀 FloatingWeb – Multi-Chart Trading Browser + Local Alert System
 
-Advanced Android Overlay App for Traders (Unlimited Charts, Binance WebSocket Alerts, Floating Windows, JS Injection)
+Advanced Android Overlay App for Traders
 
-FloatingWeb is a high-performance multi-chart floating browser designed for professional traders.
-It lets you open unlimited TradingView charts inside movable, resizable overlay windows—running on top of all apps.
-It also includes a full local alert engine powered by Binance WebSocket + REST validation, custom alerts, and foreground price monitoring.
+Unlimited Charts • Binance WebSocket Alerts • Floating Windows • JS Injection • Foreground Services
 
-Built using Kotlin, Jetpack Compose, WindowManager, Foreground Services, and Binance APIs.
+FloatingWeb is a high-performance multi-chart floating browser for professional traders.
+It allows you to open unlimited TradingView charts inside movable, resizable overlay windows that run on top of all apps.
+
+It also includes a full local alert engine powered by Binance WebSocket + REST validation, custom alert sounds, and a dedicated foreground price-monitoring service.
+
+Built with Kotlin, Jetpack Compose, WindowManager, Foreground Services, and Binance APIs.
 
 🌟 Key Highlights
 
-✔ Unlimited multi-chart floating windows
+✔ Unlimited Multi-Chart Floating Windows
 
-Create as many overlay windows as you want — each powered by a dedicated container inside a single service.
+Open multiple overlay windows — each handled by a dynamic container inside a single high-performance service.
 
-✔ 3 Window Modes
+✔ Three Window Modes
 
-Full Size – Full chart trading mode
+Full Size – Full trading chart view
 
-Mini Size – Small draggable chart
+Mini Size – Draggable mini chart
 
-Minimize/Hidden – Bubble mode, keeps running in background
+Minimized / Hidden – Bubble mode
 
-✔ Overlay always-on-top
+✔ Overlay Always On Top
 
-Charts stay above all apps (WhatsApp, Chrome, Binance, etc.).
+Charts stay above all applications (Binance, Chrome, WhatsApp, etc.).
 
 ✔ Binance Local Alert System
 
-Runs in a separate foreground service inside your app:
+Powered by a dedicated foreground service:
 
 Price Above X
 
@@ -38,141 +41,138 @@ Supports COIN-M, USD-M, SPOT
 
 Live WebSocket ticker
 
-Auto reconnect
+Auto-reconnect
 
-Custom alert sound
+Custom alert sounds
 
-Validates trading pairs using Binance REST API
+Symbol validation using Binance REST
 
-✔ Save Everything Per Window
+✔ Per-Window Persistence
 
-Each floating window remembers:
+Each floating window saves:
 
 Chart URL
 
 Selected timeframe
 
-Window state (Full / Mini / Hidden)
+Window state
 
-User-added custom buttons
+Custom buttons
 
 Last session history
 
-Stored using SharedPreferences (lightweight local persistence).
+Stored via SharedPreferences.
 
-✔ Resizable, Draggable, Multi-Mode Windows
+✔ Advanced Floating Window Engine
 
 Highly optimized WindowManager implementation:
 
-Resize by edges
+Edge-based resize
 
 Drag anywhere on screen
 
-Smooth UI frame rate
+Smooth animations
 
-Zero lag
+Zero frame drops
 
-✔ TradingView Powered
+✔ TradingView Optimized
 
-Optimized for TradingView, but can load any website for chart reference.
+Primary support for TradingView charts
+(Any website can be opened for reference use.)
 
 ✔ Risk Calculator Included
 
-Quick risk management panel integrated inside the overlay.
+Built-in quick calculation panel for position sizing & risk management.
 
 ✔ JS Injection Engine
 
-Injects JavaScript into WebView for:
+Inject JavaScript for:
 
-Parsing price
+Price parsing
 
-Capturing data
-(Current live price now uses Binance WS for accuracy)
+DOM extraction
 
-🛠️ Technical Architecture (Strong Professional Explanation)
+Advanced trading utilities
+
+(Current live price uses Binance WebSocket for accuracy.)
+
+🛠️ Technical Architecture
 
 ▶ Multi-Overlay Engine
 
-Built with WindowManager
+WindowManager-based docking system
 
-Each floating container is identified dynamically
+Dynamically indexed containers
 
-Runs inside a single foreground service (high performance)
+Low-memory footprint
 
-Supports unlimited windows → low memory footprint
+Managed inside one foreground service
 
-▶ Services
+▶ Core Services
 
 FloatingBrowserService
 
-Creates and manages overlay windows
+Creates and manages all floating windows
 
-Handles states + drag + resize + layout transitions
+Handles window states, drag, resize
 
 PriceAlertService
 
 Maintains Binance WebSocket
 
-Auto-reconnects
+Handles auto-reconnect
 
-Foreground persistent mode
+Foreground high-priority mode
 
 ▶ Network Layer
 
-Binance WebSocket: Live ticker for alerts
+Binance WebSocket (live ticker)
 
-Binance REST API: Validate symbol (COIN-M, USD-M, SPOT)
+Binance REST API (symbol validation)
 
-OKHttp + Gson for parsing
+OkHttp + Gson
 
 ▶ Storage
 
-SharedPreferences for:
+SharedPreferences for UI state
 
-Chart links
+Chart configurations
 
-Window state
-
-Buttons
-
-Timeframes
+Window mode persistence
 
 ▶ UI Layer
 
 Jetpack Compose
 
-Material 3  
+Material 3
 
-Compose state management
+State-driven UI
 
 📸 Screenshots
-<img width="417" height="963" alt="Screenshot 2025-11-25 200715" src="https://github.com/user-attachments/assets/9653c7f4-1da4-451a-9192-1c833585f431" />
-<img width="417" height="963" alt="Screenshot 2025-11-25 200625" src="https://github.com/user-attachments/assets/412d6ed2-7645-4c29-a0bf-228db7ae7a74" />
-<img width="417" height="963" alt="Screenshot 2025-11-25 200520" src="https://github.com/user-attachments/assets/1b7a0ad9-7444-4547-a5d1-a03ccd73ced8" />
-<img width="417" height="963" alt="Screenshot 2025-11-25 200450" src="https://github.com/user-attachments/assets/7b18e897-4273-47bf-9a7f-3493b7f2ea2d" />
-<img width="417" height="963" alt="Screenshot 2025-11-25 200441" src="https://github.com/user-attachments/assets/0c4c35ad-36a5-474d-96ba-0b472e46de0c" />
-<img width="417" height="963" alt="Screenshot 2025-11-25 200429" src="https://github.com/user-attachments/assets/6769d5db-9e7f-4510-91ff-d84ab0a447fe" />
 
+<img width="417" height="963" src="https://github.com/user-attachments/assets/9653c7f4-1da4-451a-9192-1c833585f431" /> <img width="417" height="963" src="https://github.com/user-attachments/assets/412d6ed2-7645-4c29-a0bf-228db7ae7a74" /> <img width="417" height="963" src="https://github.com/user-attachments/assets/1b7a0ad9-7444-4547-a5d1-a03ccd73ced8" /> <img width="417" height="963" src="https://github.com/user-attachments/assets/7b18e897-4273-47bf-9a7f-3493b7f2ea2d" /> <img width="417" height="963" src="https://github.com/user-attachments/assets/0c4c35ad-36a5-474d-96ba-0b472e46de0c" /> <img width="417" height="963" src="https://github.com/user-attachments/assets/6769d5db-9e7f-4510-91ff-d84ab0a447fe" /> 
 
 🔐 Permissions Used
-Your manifest includes:
 
-SYSTEM_ALERT_WINDOW — Overlay floating windows
+Your Android manifest includes:
 
-FOREGROUND_SERVICE — Persistent background operation
+SYSTEM_ALERT_WINDOW — Overlay windows
 
-INTERNET — TradingView + Binance API
+FOREGROUND_SERVICE — Persistent live services
+
+FOREGROUND_SERVICE_DATA_SYNC
+
+INTERNET — Live trading data
 
 ACCESS_NETWORK_STATE
 
-WAKE_LOCK — Keep service alive
-
-POST_NOTIFICATIONS
+WAKE_LOCK
 
 REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
 
+POST_NOTIFICATIONS
 
-integration
+Binance package queries included for deep-linking support.
 
 🧑‍💻 Author
 
@@ -183,7 +183,5 @@ Android & Full-Stack Developer
 📝 License
 
 This project is currently private-use only.
-(If you want MIT/Apache license, tell me — I’ll add it.)
-
-
+(If you want MIT/Apache license, I can add it.)
 
