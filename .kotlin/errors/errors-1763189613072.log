@@ -1,0 +1,390 @@
+kotlin version: 2.2.21
+error message: java.lang.RuntimeException: Exception while generating code for:
+FUN name:toggleControlPanel visibility:private modality:FINAL returnType:kotlin.Unit
+  VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:com.example.floatingweb.services.FloatingBrowserService
+  annotations:
+    SuppressLint(value = ["ClickableViewAccessibility", "UseKtx"] type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String)
+  BLOCK_BODY
+    WHEN type=kotlin.Unit origin=IF
+      BRANCH
+        if: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:isDestroying type:kotlin.Boolean visibility:private' type=kotlin.Boolean origin=null
+          receiver: GET_VAR '<this>: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel' type=com.example.floatingweb.services.FloatingBrowserService origin=IMPLICIT_ARGUMENT
+        then: RETURN type=kotlin.Nothing from='private final fun toggleControlPanel (): kotlin.Unit declared in com.example.floatingweb.services.FloatingBrowserService'
+          GET_FIELD 'FIELD FIELD_FOR_OBJECT_INSTANCE name:INSTANCE type:kotlin.Unit visibility:public [final,static] declared in kotlin.Unit' type=kotlin.Unit origin=null
+    SET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:isExpanded type:kotlin.Boolean visibility:private' type=kotlin.Unit origin=null
+      receiver: GET_VAR '<this>: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel' type=com.example.floatingweb.services.FloatingBrowserService origin=IMPLICIT_ARGUMENT
+      value: CALL 'public final fun not (): kotlin.Boolean [operator] declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+        ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:isExpanded type:kotlin.Boolean visibility:private' type=kotlin.Boolean origin=null
+          receiver: GET_VAR '<this>: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel' type=com.example.floatingweb.services.FloatingBrowserService origin=IMPLICIT_ARGUMENT
+    COMPOSITE type=kotlin.Unit origin=null
+      BLOCK type=kotlin.Unit? origin=FOLDED_SAFE_CALL
+        WHEN type=kotlin.Unit? origin=FOLDED_SAFE_CALL
+          BRANCH
+            if: COMPOSITE type=kotlin.Boolean origin=null
+              VAR IR_TEMPORARY_VARIABLE name:tmp0_safe_receiver type:android.widget.LinearLayout? [val]
+                GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:controlPanel type:android.widget.LinearLayout? visibility:private' type=android.widget.LinearLayout? origin=null
+                  receiver: GET_VAR '<this>: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel' type=com.example.floatingweb.services.FloatingBrowserService origin=IMPLICIT_ARGUMENT
+              CALL 'public final fun not (): kotlin.Boolean [operator] declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=null
+                  ARG arg0: GET_VAR 'val tmp0_safe_receiver: android.widget.LinearLayout? [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel' type=android.widget.LinearLayout? origin=null
+                  ARG arg1: CONST Null type=kotlin.Nothing? value=null
+            then: CALL 'public final fun let <T, R> (<this>: T of kotlin.StandardKt.let, block: kotlin.Function1<T of kotlin.StandardKt.let, R of kotlin.StandardKt.let>): R of kotlin.StandardKt.let [inline] declared in kotlin.StandardKt' type=kotlin.Unit origin=null
+              TYPE_ARG T: android.widget.LinearLayout
+              TYPE_ARG R: kotlin.Unit
+              ARG <this>: TYPE_OP type=android.widget.LinearLayout origin=IMPLICIT_CAST typeOperand=android.widget.LinearLayout
+                GET_VAR 'val tmp0_safe_receiver: android.widget.LinearLayout? [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel' type=android.widget.LinearLayout? origin=null
+              ARG block: BLOCK type=kotlin.Function1<android.widget.LinearLayout, kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0 (this$0: com.example.floatingweb.services.FloatingBrowserService, panel: android.widget.LinearLayout): kotlin.Unit declared in com.example.floatingweb.services.FloatingBrowserService' type=kotlin.Function1<android.widget.LinearLayout, kotlin.Unit> origin=INLINE_LAMBDA reflectionTarget=null
+                  ARG this$0: GET_VAR '<this>: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: CONST Null type=kotlin.Nothing? value=null
+
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:53)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate$default(FunctionCodegen.kt:46)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generateMethodNode(ClassCodegen.kt:422)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generateMethod(ClassCodegen.kt:439)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generate(ClassCodegen.kt:164)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.generateFile(JvmIrCodegenFactory.kt:446)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.invokeCodegen(JvmIrCodegenFactory.kt:413)
+	at org.jetbrains.kotlin.cli.jvm.compiler.KotlinToJVMBytecodeCompiler.runCodegen$cli(KotlinToJVMBytecodeCompiler.kt:425)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmBackendPipelinePhase.executePhase(JvmBackendPipelinePhase.kt:89)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmBackendPipelinePhase.executePhase(JvmBackendPipelinePhase.kt:27)
+	at org.jetbrains.kotlin.cli.pipeline.PipelinePhase.phaseBody(PipelinePhase.kt:68)
+	at org.jetbrains.kotlin.cli.pipeline.PipelinePhase.phaseBody(PipelinePhase.kt:58)
+	at org.jetbrains.kotlin.config.phaser.NamedCompilerPhase.invoke(CompilerPhase.kt:102)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:22)
+	at org.jetbrains.kotlin.config.phaser.CompilerPhaseKt.invokeToplevel(CompilerPhase.kt:53)
+	at org.jetbrains.kotlin.cli.pipeline.AbstractCliPipeline.runPhasedPipeline(AbstractCliPipeline.kt:109)
+	at org.jetbrains.kotlin.cli.pipeline.AbstractCliPipeline.execute(AbstractCliPipeline.kt:68)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecutePhased(K2JVMCompiler.kt:79)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecutePhased(K2JVMCompiler.kt:45)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:90)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.exec(CLICompiler.kt:352)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerBase.runCompiler(IncrementalJvmCompilerRunnerBase.kt:176)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerBase.runCompiler(IncrementalJvmCompilerRunnerBase.kt:39)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:499)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:416)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally$lambda$0$compile(IncrementalCompilerRunner.kt:249)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally(IncrementalCompilerRunner.kt:267)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:119)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:684)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:94)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1810)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.RuntimeException: Exception while generating code for:
+FUN INLINE_LAMBDA name:toggleControlPanel$lambda$0 visibility:private modality:FINAL returnType:kotlin.Unit
+  VALUE_PARAMETER BOUND_VALUE_PARAMETER kind:Regular name:this$0 index:0 type:com.example.floatingweb.services.FloatingBrowserService
+  VALUE_PARAMETER kind:Regular name:panel index:1 type:android.widget.LinearLayout
+  BLOCK_BODY
+    VAR name:$i$a$-let-FloatingBrowserService$toggleControlPanel$1 type:kotlin.Int [val]
+      CONST Int type=kotlin.Int value=0
+    WHEN type=kotlin.Unit origin=IF
+      BRANCH
+        if: CALL 'public final fun greater (arg0: kotlin.Int, arg1: kotlin.Int): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=GT
+          ARG arg0: CALL 'public open fun getChildCount (): kotlin.Int [fake_override] declared in android.widget.LinearLayout' type=kotlin.Int origin=GET_PROPERTY
+            ARG <this>: GET_VAR 'panel: android.widget.LinearLayout declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.LinearLayout origin=null
+          ARG arg1: CONST Int type=kotlin.Int value=1
+        then: BLOCK type=kotlin.Unit origin=null
+          CALL 'public open fun removeViews (p0: kotlin.Int, p1: kotlin.Int): kotlin.Unit [fake_override] declared in android.widget.LinearLayout' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR 'panel: android.widget.LinearLayout declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.LinearLayout origin=null
+            ARG p0: CONST Int type=kotlin.Int value=1
+            ARG p1: CALL 'public final fun minus (other: kotlin.Int): kotlin.Int [operator] declared in kotlin.Int' type=kotlin.Int origin=MINUS
+              ARG <this>: CALL 'public open fun getChildCount (): kotlin.Int [fake_override] declared in android.widget.LinearLayout' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'panel: android.widget.LinearLayout declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.LinearLayout origin=null
+              ARG other: CONST Int type=kotlin.Int value=1
+    WHEN type=kotlin.Unit origin=IF
+      BRANCH
+        if: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:isExpanded type:kotlin.Boolean visibility:private' type=kotlin.Boolean origin=null
+          receiver: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+        then: BLOCK type=kotlin.Unit origin=null
+          VAR name:scrollView type:android.widget.ScrollView [val]
+            CALL 'public final fun apply <T> (<this>: T of kotlin.StandardKt.apply, block: @[ExtensionFunctionType] kotlin.Function1<T of kotlin.StandardKt.apply, kotlin.Unit>): T of kotlin.StandardKt.apply [inline] declared in kotlin.StandardKt' type=android.widget.ScrollView origin=null
+              TYPE_ARG T: android.widget.ScrollView
+              ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (p0: @[FlexibleNullability] android.content.Context?) declared in android.widget.ScrollView' type=android.widget.ScrollView origin=null
+                ARG p0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+              ARG block: BLOCK type=@[ExtensionFunctionType] kotlin.Function1<android.widget.ScrollView, kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$0 ($this$apply: android.widget.ScrollView, this$0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Unit declared in com.example.floatingweb.services.FloatingBrowserService' type=@[ExtensionFunctionType] kotlin.Function1<android.widget.ScrollView, kotlin.Unit> origin=INLINE_LAMBDA reflectionTarget=null
+                  ARG this$0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+          VAR name:innerLayout type:android.widget.LinearLayout [val]
+            CALL 'public final fun apply <T> (<this>: T of kotlin.StandardKt.apply, block: @[ExtensionFunctionType] kotlin.Function1<T of kotlin.StandardKt.apply, kotlin.Unit>): T of kotlin.StandardKt.apply [inline] declared in kotlin.StandardKt' type=android.widget.LinearLayout origin=null
+              TYPE_ARG T: android.widget.LinearLayout
+              ARG <this>: CONSTRUCTOR_CALL 'public constructor <init> (p0: @[FlexibleNullability] android.content.Context?) declared in android.widget.LinearLayout' type=android.widget.LinearLayout origin=null
+                ARG p0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+              ARG block: BLOCK type=@[ExtensionFunctionType] kotlin.Function1<android.widget.LinearLayout, kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$1 ($this$apply: android.widget.LinearLayout): kotlin.Unit declared in com.example.floatingweb.services.FloatingBrowserService' type=@[ExtensionFunctionType] kotlin.Function1<android.widget.LinearLayout, kotlin.Unit> origin=INLINE_LAMBDA reflectionTarget=null
+          CALL 'public final fun forEach <K, V> (<this>: kotlin.collections.Map<out K of kotlin.collections.MapsKt.forEach, V of kotlin.collections.MapsKt.forEach>, action: kotlin.Function1<kotlin.collections.Map.Entry<K of kotlin.collections.MapsKt.forEach, V of kotlin.collections.MapsKt.forEach>, kotlin.Unit>): kotlin.Unit [inline] declared in kotlin.collections.MapsKt' type=kotlin.Unit origin=null
+            TYPE_ARG K: kotlin.String
+            TYPE_ARG V: com.example.floatingweb.services.FloatingBrowserService.OverlayHolder
+            ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:overlaysById type:kotlin.collections.MutableMap<kotlin.String, com.example.floatingweb.services.FloatingBrowserService.OverlayHolder> visibility:private [final]' type=kotlin.collections.MutableMap<kotlin.String, com.example.floatingweb.services.FloatingBrowserService.OverlayHolder> origin=null
+              receiver: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+            ARG action: BLOCK type=kotlin.Function1<kotlin.collections.Map.Entry<kotlin.String, com.example.floatingweb.services.FloatingBrowserService.OverlayHolder>, kotlin.Unit> origin=LAMBDA
+              COMPOSITE type=kotlin.Unit origin=null
+              FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$2 (this$0: com.example.floatingweb.services.FloatingBrowserService, $innerLayout: android.widget.LinearLayout, <destruct>: kotlin.collections.Map.Entry<kotlin.String, com.example.floatingweb.services.FloatingBrowserService.OverlayHolder>): kotlin.Unit declared in com.example.floatingweb.services.FloatingBrowserService' type=kotlin.Function1<kotlin.collections.Map.Entry<kotlin.String, com.example.floatingweb.services.FloatingBrowserService.OverlayHolder>, kotlin.Unit> origin=INLINE_LAMBDA reflectionTarget=null
+                ARG this$0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+                ARG $innerLayout: GET_VAR 'val innerLayout: android.widget.LinearLayout [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.LinearLayout origin=null
+          VAR name:hideAllBtn type:android.widget.Button [val]
+            CALL 'private final fun createControlButton (text: kotlin.String, bgColor: kotlin.Int, textSizeSp: kotlin.Float, onClick: kotlin.Function0<kotlin.Unit>): android.widget.Button declared in com.example.floatingweb.services.FloatingBrowserService' type=android.widget.Button origin=null
+              ARG <this>: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+              ARG text: CONST String type=kotlin.String value="Hide ●"
+              ARG bgColor: CALL 'public final fun toColorInt (<this>: kotlin.String): kotlin.Int [inline] declared in androidx.core.graphics.ColorKt' type=kotlin.Int origin=null
+                ARG <this>: CONST String type=kotlin.String value="#031956"
+              ARG textSizeSp: CONST Float type=kotlin.Float value=10.0
+              ARG onClick: BLOCK type=kotlin.Function0<kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                CALL 'public final fun <jvm-indy> <T> (dynamicCall: T of kotlin.jvm.internal.<jvm-indy>, bootstrapMethodHandle: kotlin.Any, vararg bootstrapMethodArguments: kotlin.Any): T of kotlin.jvm.internal.<jvm-indy> declared in kotlin.jvm.internal' type=kotlin.Function0<kotlin.Unit> origin=null
+                  TYPE_ARG T: kotlin.Function0<kotlin.Unit>
+                  ARG dynamicCall: CALL 'public final fun invoke (p0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Function0<kotlin.Unit> declared in kotlin.jvm.internal.invokeDynamic' type=kotlin.Function0<kotlin.Unit> origin=null
+                    ARG p0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+                  ARG bootstrapMethodHandle: CALL 'public final fun <jvm-method-handle> (tag: kotlin.Int, owner: kotlin.String, name: kotlin.String, descriptor: kotlin.String, isInterface: kotlin.Boolean): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                    ARG tag: CONST Int type=kotlin.Int value=6
+                    ARG owner: CONST String type=kotlin.String value="java/lang/invoke/LambdaMetafactory"
+                    ARG name: CONST String type=kotlin.String value="metafactory"
+                    ARG descriptor: CONST String type=kotlin.String value="(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+                    ARG isInterface: CONST Boolean type=kotlin.Boolean value=false
+                  ARG bootstrapMethodArguments: VARARG type=kotlin.Array<kotlin.Any> varargElementType=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): R of kotlin.Function0 [operator] declared in kotlin.Function0' type=kotlin.Any
+                    RAW_FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$3 (this$0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Unit? declared in com.example.floatingweb.services.FloatingBrowserService' type=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): kotlin.Unit? [fake_override,operator] declared in kotlin.jvm.internal.invokeDynamic.<fake>' type=kotlin.Any
+          VAR name:showAllBtn type:android.widget.Button [val]
+            CALL 'private final fun createControlButton (text: kotlin.String, bgColor: kotlin.Int, textSizeSp: kotlin.Float, onClick: kotlin.Function0<kotlin.Unit>): android.widget.Button declared in com.example.floatingweb.services.FloatingBrowserService' type=android.widget.Button origin=null
+              ARG <this>: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+              ARG text: CONST String type=kotlin.String value="Show ⛶"
+              ARG bgColor: CALL 'public final fun toColorInt (<this>: kotlin.String): kotlin.Int [inline] declared in androidx.core.graphics.ColorKt' type=kotlin.Int origin=null
+                ARG <this>: CONST String type=kotlin.String value="#031956"
+              ARG textSizeSp: CONST Float type=kotlin.Float value=10.0
+              ARG onClick: BLOCK type=kotlin.Function0<kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                CALL 'public final fun <jvm-indy> <T> (dynamicCall: T of kotlin.jvm.internal.<jvm-indy>, bootstrapMethodHandle: kotlin.Any, vararg bootstrapMethodArguments: kotlin.Any): T of kotlin.jvm.internal.<jvm-indy> declared in kotlin.jvm.internal' type=kotlin.Function0<kotlin.Unit> origin=null
+                  TYPE_ARG T: kotlin.Function0<kotlin.Unit>
+                  ARG dynamicCall: CALL 'public final fun invoke (p0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Function0<kotlin.Unit> declared in kotlin.jvm.internal.invokeDynamic' type=kotlin.Function0<kotlin.Unit> origin=null
+                    ARG p0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+                  ARG bootstrapMethodHandle: CALL 'public final fun <jvm-method-handle> (tag: kotlin.Int, owner: kotlin.String, name: kotlin.String, descriptor: kotlin.String, isInterface: kotlin.Boolean): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                    ARG tag: CONST Int type=kotlin.Int value=6
+                    ARG owner: CONST String type=kotlin.String value="java/lang/invoke/LambdaMetafactory"
+                    ARG name: CONST String type=kotlin.String value="metafactory"
+                    ARG descriptor: CONST String type=kotlin.String value="(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+                    ARG isInterface: CONST Boolean type=kotlin.Boolean value=false
+                  ARG bootstrapMethodArguments: VARARG type=kotlin.Array<kotlin.Any> varargElementType=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): R of kotlin.Function0 [operator] declared in kotlin.Function0' type=kotlin.Any
+                    RAW_FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$4 (this$0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Unit? declared in com.example.floatingweb.services.FloatingBrowserService' type=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): kotlin.Unit? [fake_override,operator] declared in kotlin.jvm.internal.invokeDynamic.<fake>' type=kotlin.Any
+          VAR name:openAppBtn type:android.widget.Button [val]
+            CALL 'private final fun createControlButton (text: kotlin.String, bgColor: kotlin.Int, textSizeSp: kotlin.Float, onClick: kotlin.Function0<kotlin.Unit>): android.widget.Button declared in com.example.floatingweb.services.FloatingBrowserService' type=android.widget.Button origin=null
+              ARG <this>: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+              ARG text: CONST String type=kotlin.String value="\uD83D\uDCF1 Open App"
+              ARG bgColor: CALL 'public final fun toColorInt (<this>: kotlin.String): kotlin.Int [inline] declared in androidx.core.graphics.ColorKt' type=kotlin.Int origin=null
+                ARG <this>: CONST String type=kotlin.String value="#031956"
+              ARG textSizeSp: CONST Float type=kotlin.Float value=10.0
+              ARG onClick: BLOCK type=kotlin.Function0<kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                CALL 'public final fun <jvm-indy> <T> (dynamicCall: T of kotlin.jvm.internal.<jvm-indy>, bootstrapMethodHandle: kotlin.Any, vararg bootstrapMethodArguments: kotlin.Any): T of kotlin.jvm.internal.<jvm-indy> declared in kotlin.jvm.internal' type=kotlin.Function0<kotlin.Unit> origin=null
+                  TYPE_ARG T: kotlin.Function0<kotlin.Unit>
+                  ARG dynamicCall: CALL 'public final fun invoke (p0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Function0<kotlin.Unit> declared in kotlin.jvm.internal.invokeDynamic' type=kotlin.Function0<kotlin.Unit> origin=null
+                    ARG p0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+                  ARG bootstrapMethodHandle: CALL 'public final fun <jvm-method-handle> (tag: kotlin.Int, owner: kotlin.String, name: kotlin.String, descriptor: kotlin.String, isInterface: kotlin.Boolean): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                    ARG tag: CONST Int type=kotlin.Int value=6
+                    ARG owner: CONST String type=kotlin.String value="java/lang/invoke/LambdaMetafactory"
+                    ARG name: CONST String type=kotlin.String value="metafactory"
+                    ARG descriptor: CONST String type=kotlin.String value="(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+                    ARG isInterface: CONST Boolean type=kotlin.Boolean value=false
+                  ARG bootstrapMethodArguments: VARARG type=kotlin.Array<kotlin.Any> varargElementType=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): R of kotlin.Function0 [operator] declared in kotlin.Function0' type=kotlin.Any
+                    RAW_FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$5 (this$0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Unit? declared in com.example.floatingweb.services.FloatingBrowserService' type=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): kotlin.Unit? [fake_override,operator] declared in kotlin.jvm.internal.invokeDynamic.<fake>' type=kotlin.Any
+          VAR name:closeBtn type:android.widget.Button [val]
+            CALL 'private final fun createControlButton (text: kotlin.String, bgColor: kotlin.Int, textSizeSp: kotlin.Float, onClick: kotlin.Function0<kotlin.Unit>): android.widget.Button declared in com.example.floatingweb.services.FloatingBrowserService' type=android.widget.Button origin=null
+              ARG <this>: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+              ARG text: CONST String type=kotlin.String value="❌"
+              ARG bgColor: CONST Int type=kotlin.Int value=-1
+              ARG textSizeSp: CONST Float type=kotlin.Float value=20.0
+              ARG onClick: BLOCK type=kotlin.Function0<kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                CALL 'public final fun <jvm-indy> <T> (dynamicCall: T of kotlin.jvm.internal.<jvm-indy>, bootstrapMethodHandle: kotlin.Any, vararg bootstrapMethodArguments: kotlin.Any): T of kotlin.jvm.internal.<jvm-indy> declared in kotlin.jvm.internal' type=kotlin.Function0<kotlin.Unit> origin=null
+                  TYPE_ARG T: kotlin.Function0<kotlin.Unit>
+                  ARG dynamicCall: CALL 'public final fun invoke (p0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Function0<kotlin.Unit> declared in kotlin.jvm.internal.invokeDynamic' type=kotlin.Function0<kotlin.Unit> origin=null
+                    ARG p0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+                  ARG bootstrapMethodHandle: CALL 'public final fun <jvm-method-handle> (tag: kotlin.Int, owner: kotlin.String, name: kotlin.String, descriptor: kotlin.String, isInterface: kotlin.Boolean): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                    ARG tag: CONST Int type=kotlin.Int value=6
+                    ARG owner: CONST String type=kotlin.String value="java/lang/invoke/LambdaMetafactory"
+                    ARG name: CONST String type=kotlin.String value="metafactory"
+                    ARG descriptor: CONST String type=kotlin.String value="(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+                    ARG isInterface: CONST Boolean type=kotlin.Boolean value=false
+                  ARG bootstrapMethodArguments: VARARG type=kotlin.Array<kotlin.Any> varargElementType=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): R of kotlin.Function0 [operator] declared in kotlin.Function0' type=kotlin.Any
+                    RAW_FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$6 (this$0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Unit? declared in com.example.floatingweb.services.FloatingBrowserService' type=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): kotlin.Unit? [fake_override,operator] declared in kotlin.jvm.internal.invokeDynamic.<fake>' type=kotlin.Any
+          VAR name:showBox type:android.widget.Button [val]
+            CALL 'private final fun createControlButton (text: kotlin.String, bgColor: kotlin.Int, textSizeSp: kotlin.Float, onClick: kotlin.Function0<kotlin.Unit>): android.widget.Button declared in com.example.floatingweb.services.FloatingBrowserService' type=android.widget.Button origin=null
+              ARG <this>: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+              ARG text: CONST String type=kotlin.String value="\uD83D\uDCE6 List"
+              ARG bgColor: CALL 'public final fun toColorInt (<this>: kotlin.String): kotlin.Int [inline] declared in androidx.core.graphics.ColorKt' type=kotlin.Int origin=null
+                ARG <this>: CONST String type=kotlin.String value="#031956"
+              ARG textSizeSp: CONST Float type=kotlin.Float value=10.0
+              ARG onClick: BLOCK type=kotlin.Function0<kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                CALL 'public final fun <jvm-indy> <T> (dynamicCall: T of kotlin.jvm.internal.<jvm-indy>, bootstrapMethodHandle: kotlin.Any, vararg bootstrapMethodArguments: kotlin.Any): T of kotlin.jvm.internal.<jvm-indy> declared in kotlin.jvm.internal' type=kotlin.Function0<kotlin.Unit> origin=null
+                  TYPE_ARG T: kotlin.Function0<kotlin.Unit>
+                  ARG dynamicCall: CALL 'public final fun invoke (p0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Function0<kotlin.Unit> declared in kotlin.jvm.internal.invokeDynamic' type=kotlin.Function0<kotlin.Unit> origin=null
+                    ARG p0: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+                  ARG bootstrapMethodHandle: CALL 'public final fun <jvm-method-handle> (tag: kotlin.Int, owner: kotlin.String, name: kotlin.String, descriptor: kotlin.String, isInterface: kotlin.Boolean): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                    ARG tag: CONST Int type=kotlin.Int value=6
+                    ARG owner: CONST String type=kotlin.String value="java/lang/invoke/LambdaMetafactory"
+                    ARG name: CONST String type=kotlin.String value="metafactory"
+                    ARG descriptor: CONST String type=kotlin.String value="(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;"
+                    ARG isInterface: CONST Boolean type=kotlin.Boolean value=false
+                  ARG bootstrapMethodArguments: VARARG type=kotlin.Array<kotlin.Any> varargElementType=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): R of kotlin.Function0 [operator] declared in kotlin.Function0' type=kotlin.Any
+                    RAW_FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$7 (this$0: com.example.floatingweb.services.FloatingBrowserService): kotlin.Unit? declared in com.example.floatingweb.services.FloatingBrowserService' type=kotlin.Any
+                    CALL 'public final fun <jvm-original-method-type> (method: kotlin.Any): kotlin.Any declared in kotlin.jvm.internal' type=kotlin.Any origin=null
+                      ARG method: RAW_FUNCTION_REFERENCE 'public abstract fun invoke (): kotlin.Unit? [fake_override,operator] declared in kotlin.jvm.internal.invokeDynamic.<fake>' type=kotlin.Any
+          COMPOSITE type=kotlin.Unit origin=null
+            CALL 'public final fun apply <T> (<this>: T of kotlin.StandardKt.apply, block: @[ExtensionFunctionType] kotlin.Function1<T of kotlin.StandardKt.apply, kotlin.Unit>): T of kotlin.StandardKt.apply [inline] declared in kotlin.StandardKt' type=android.widget.LinearLayout origin=null
+              TYPE_ARG T: android.widget.LinearLayout
+              ARG <this>: GET_VAR 'val innerLayout: android.widget.LinearLayout [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.LinearLayout origin=null
+              ARG block: BLOCK type=@[ExtensionFunctionType] kotlin.Function1<android.widget.LinearLayout, kotlin.Unit> origin=LAMBDA
+                COMPOSITE type=kotlin.Unit origin=null
+                FUNCTION_REFERENCE 'private final fun toggleControlPanel$lambda$0$8 ($this$apply: android.widget.LinearLayout, $showBox: android.widget.Button, $showAllBtn: android.widget.Button, $openAppBtn: android.widget.Button, $hideAllBtn: android.widget.Button, $closeBtn: android.widget.Button): kotlin.Unit declared in com.example.floatingweb.services.FloatingBrowserService' type=@[ExtensionFunctionType] kotlin.Function1<android.widget.LinearLayout, kotlin.Unit> origin=INLINE_LAMBDA reflectionTarget=null
+                  ARG $showBox: GET_VAR 'val showBox: android.widget.Button [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.Button origin=null
+                  ARG $showAllBtn: GET_VAR 'val showAllBtn: android.widget.Button [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.Button origin=null
+                  ARG $openAppBtn: GET_VAR 'val openAppBtn: android.widget.Button [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.Button origin=null
+                  ARG $hideAllBtn: GET_VAR 'val hideAllBtn: android.widget.Button [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.Button origin=null
+                  ARG $closeBtn: GET_VAR 'val closeBtn: android.widget.Button [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.Button origin=null
+            COMPOSITE type=kotlin.Unit origin=null
+          CALL 'public open fun addView (p0: @[FlexibleNullability] android.view.View?): kotlin.Unit declared in android.widget.ScrollView' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR 'val scrollView: android.widget.ScrollView [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.ScrollView origin=null
+            ARG p0: GET_VAR 'val innerLayout: android.widget.LinearLayout [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.LinearLayout origin=null
+          CALL 'public open fun addView (p0: @[FlexibleNullability] android.view.View?): kotlin.Unit [fake_override] declared in android.widget.LinearLayout' type=kotlin.Unit origin=null
+            ARG <this>: GET_VAR 'panel: android.widget.LinearLayout declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.LinearLayout origin=null
+            ARG p0: GET_VAR 'val scrollView: android.widget.ScrollView [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0' type=android.widget.ScrollView origin=null
+
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:53)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrSourceCompilerForInline.generateLambdaBody(IrSourceCompilerForInline.kt:72)
+	at org.jetbrains.kotlin.codegen.inline.ExpressionLambda.generateLambdaBody(LambdaInfo.kt:72)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCodegen.genValueAndPut(IrInlineCodegen.kt:122)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall$handleParameter(ExpressionCodegen.kt:567)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall(ExpressionCodegen.kt:580)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrCall.accept(IrCall.kt:24)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitWhen(ExpressionCodegen.kt:1054)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitWhen(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrWhen.accept(IrWhen.kt:24)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:530)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitContainerExpression(ExpressionCodegen.kt:544)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitContainerExpression(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitor.visitBlock(IrVisitor.kt:122)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlock(ExpressionCodegen.kt:416)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlock(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrBlock.accept(IrBlock.kt:18)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:530)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitContainerExpression(ExpressionCodegen.kt:544)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitContainerExpression(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitor.visitComposite(IrVisitor.kt:125)
+	at org.jetbrains.kotlin.ir.expressions.IrComposite.accept(IrComposite.kt:18)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:530)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:535)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrBlockBody.accept(IrBlockBody.kt:20)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.generate(ExpressionCodegen.kt:232)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.doGenerate(FunctionCodegen.kt:129)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:50)
+	... 45 more
+Caused by: java.lang.RuntimeException: Exception while generating code for:
+FUN INLINE_LAMBDA name:toggleControlPanel$lambda$0$0 visibility:private modality:FINAL returnType:kotlin.Unit
+  VALUE_PARAMETER kind:ExtensionReceiver name:$this$apply index:0 type:android.widget.ScrollView
+  VALUE_PARAMETER BOUND_VALUE_PARAMETER kind:Regular name:this$0 index:1 type:com.example.floatingweb.services.FloatingBrowserService
+  BLOCK_BODY
+    VAR name:$i$a$-apply-FloatingBrowserService$toggleControlPanel$1$scrollView$1 type:kotlin.Int [val]
+      CONST Int type=kotlin.Int value=0
+    SET_FIELD 'FIELD IR_EXTERNAL_JAVA_DECLARATION_STUB name:orientation type:kotlin.Int visibility:public [final,static] declared in android.R.attr' type=kotlin.Unit superQualifierSymbol=android.R.attr origin=EQ
+      value: CONST Int type=kotlin.Int value=0
+    CALL 'public open fun setLayoutParams (p0: @[FlexibleNullability] android.view.ViewGroup.LayoutParams?): kotlin.Unit [fake_override] declared in android.widget.ScrollView' type=kotlin.Unit origin=EQ
+      ARG <this>: GET_VAR '$this$apply: android.widget.ScrollView declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0$0' type=android.widget.ScrollView origin=null
+      ARG p0: CONSTRUCTOR_CALL 'public constructor <init> (p0: kotlin.Int, p1: kotlin.Int) declared in android.widget.LinearLayout.LayoutParams' type=android.widget.LinearLayout.LayoutParams origin=null
+        ARG p0: CONST Int type=kotlin.Int value=-2
+        ARG p1: CONST Int type=kotlin.Int value=-2
+    VAR name:margin type:kotlin.Int [val]
+      CALL 'private final fun dpToPx (dp: kotlin.Int): kotlin.Int declared in com.example.floatingweb.services.FloatingBrowserService' type=kotlin.Int origin=null
+        ARG <this>: GET_VAR 'this$0: com.example.floatingweb.services.FloatingBrowserService declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0$0' type=com.example.floatingweb.services.FloatingBrowserService origin=null
+        ARG dp: CONST Int type=kotlin.Int value=8
+    CALL 'public open fun setPadding (p0: kotlin.Int, p1: kotlin.Int, p2: kotlin.Int, p3: kotlin.Int): kotlin.Unit [fake_override] declared in android.widget.ScrollView' type=kotlin.Unit origin=null
+      ARG <this>: GET_VAR '$this$apply: android.widget.ScrollView declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0$0' type=android.widget.ScrollView origin=null
+      ARG p0: GET_VAR 'val margin: kotlin.Int [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0$0' type=kotlin.Int origin=null
+      ARG p1: GET_VAR 'val margin: kotlin.Int [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0$0' type=kotlin.Int origin=null
+      ARG p2: GET_VAR 'val margin: kotlin.Int [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0$0' type=kotlin.Int origin=null
+      ARG p3: GET_VAR 'val margin: kotlin.Int [val] declared in com.example.floatingweb.services.FloatingBrowserService.toggleControlPanel$lambda$0$0' type=kotlin.Int origin=null
+
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:53)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrSourceCompilerForInline.generateLambdaBody(IrSourceCompilerForInline.kt:72)
+	at org.jetbrains.kotlin.codegen.inline.ExpressionLambda.generateLambdaBody(LambdaInfo.kt:72)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCodegen.genValueAndPut(IrInlineCodegen.kt:122)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall$handleParameter(ExpressionCodegen.kt:567)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall(ExpressionCodegen.kt:580)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrCall.accept(IrCall.kt:24)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitVariable(ExpressionCodegen.kt:729)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitVariable(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.declarations.IrVariable.accept(IrVariable.kt:36)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:530)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitContainerExpression(ExpressionCodegen.kt:544)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitContainerExpression(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitor.visitBlock(IrVisitor.kt:122)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlock(ExpressionCodegen.kt:416)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlock(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrBlock.accept(IrBlock.kt:18)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitWhen(ExpressionCodegen.kt:1054)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitWhen(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrWhen.accept(IrWhen.kt:24)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:530)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:535)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrBlockBody.accept(IrBlockBody.kt:20)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.generate(ExpressionCodegen.kt:232)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.doGenerate(FunctionCodegen.kt:129)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:50)
+	... 74 more
+Caused by: java.lang.AssertionError: access of const val: SET_FIELD 'FIELD IR_EXTERNAL_JAVA_DECLARATION_STUB name:orientation type:kotlin.Int visibility:public [final,static] declared in android.R.attr' type=kotlin.Unit superQualifierSymbol=android.R.attr origin=EQ
+  value: CONST Int type=kotlin.Int value=0
+
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitFieldAccess(ExpressionCodegen.kt:811)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitFieldAccess(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitor.visitSetField(IrVisitor.kt:215)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitSetField(ExpressionCodegen.kt:862)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitSetField(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrSetField.accept(IrSetField.kt:21)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:530)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:535)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrBlockBody.accept(IrBlockBody.kt:20)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.generate(ExpressionCodegen.kt:232)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.doGenerate(FunctionCodegen.kt:129)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:50)
+	... 101 more
+
+
