@@ -25,7 +25,7 @@ It allows you to open **unlimited TradingView charts** inside movable, resizable
 - Symbol validation using Binance REST API  
 
 ### 🔹 Per-Window Data Persistence
-Stored locally using SharedPreferences:
+- Stored locally using SharedPreferences
 - Chart URL  
 - Selected timeframe  
 - Window mode  
@@ -99,7 +99,8 @@ Stored locally using SharedPreferences:
 
 ---
 
-Screenshots
+
+## 📸 Screenshots
 
 <img width="167"  alt="Screenshot 2025-11-25 200429" src="https://github.com/user-attachments/assets/cef99e72-18f2-4926-a8ce-8db51c23e87a" />
 <img width="167"  alt="Screenshot 2025-11-25 200450" src="https://github.com/user-attachments/assets/3a2751f5-ffce-477f-abfb-2e710dd1b5a3" />
@@ -110,7 +111,7 @@ Screenshots
 
 
 ## 📱 APK Download
-https://github.com/hanzlacode/FloatingWeb/releases/tag/v1.0.0
+- https://github.com/hanzlacode/FloatingWeb/releases/tag/v1.0.0
 ---
 
 ## 🎯 Current Focus
