@@ -109,6 +109,7 @@ It allows you to open **unlimited TradingView charts** inside movable, resizable
 <img width="167"  alt="Screenshot 2025-11-25 200715" src="https://github.com/user-attachments/assets/fe286552-548f-4d75-8b35-15828f921852" />
 <img width="167"  alt="Screenshot 2025-11-25 200520" src="https://github.com/user-attachments/assets/1f13ceec-11f6-4c0d-8497-f64e73e9ebd8" />
 
+- [Watch Full Video on YouTube](https://www.youtube.com/watch?v=zWX8ZhJErE0&start=1)
 
 ## 📱 APK Download
 - https://github.com/hanzlacode/FloatingWeb/releases/tag/v1.0.0
