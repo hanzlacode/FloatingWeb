@@ -346,7 +346,7 @@ class PriceAlertService : Service() {
                     Log.e(TAG, "WebSocket failure for $market: ${t.message}")
                     sockets[market] = null
                     scheduleReconnect(market)
-                    notifyError("Price Alert service ($market): connection lost. Reconnecting...")
+//                    notifyError("Price Alert service ($market): connection lost. Reconnecting...")
                 }
 
                 override fun onClosing(ws: WebSocket, code: Int, reason: String) {
@@ -454,7 +454,19 @@ class PriceAlertService : Service() {
         for (alert in alertsToTrigger) {
             triggerAlert(alert, price)
         }
-        if (this@PriceAlertService.isServiceRunning(FloatingBrowserService::class.java)) this@PriceAlertService.startService(Intent(this@PriceAlertService, FloatingBrowserService::class.java).apply { action = "com.example.action.SHOW_ALL_OVERLAY" })
+        if (this@PriceAlertService.isServiceRunning(FloatingBrowserService::class.java)) {
+            this@PriceAlertService.startService(
+                Intent(
+                    this@PriceAlertService,
+                    FloatingBrowserService::class.java
+                ).apply {
+                    action = "com.example.action.SHOW_ALL_OVERLAY"
+                    putExtra("symbol", symbol)   // <-- pass your symbol here
+                }
+            );Log.d("showall", "from socket of binance intent show all")
+        }
+
+
     }
 
     @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)

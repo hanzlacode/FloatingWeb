@@ -22,6 +22,7 @@
     <queries>
         <package android:name="com.binance.app" />
         <package android:name="com.binance.dev" />
+        <package android:name="net.metaquotes.metatrader5" />
     </queries>
     <!--        android:networkSecurityConfig="@xml/network_security_config"-->
 

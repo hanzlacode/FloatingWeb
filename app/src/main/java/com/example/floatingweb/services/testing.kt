@@ -1,6 +1,646 @@
+//
+//        holder.overlay.post { holder.webView.invalidate() }
+
+//        js
+
+//        val serviceRef = WeakReference(this)
+//
+//        var activeAlert = mutableSetOf<PriceAlert>()
+//
+//        activeAlertsState.observe { map ->
+//            map[holder.coinSymbol]?.let { alerts ->
+//                if (alerts != activeAlert) {
+//                    activeAlert = alerts
+//                    Log.d("Overlay", "Updated alerts for $id")
+//                }
+//            }
+//        }
+//
+//        fun syncActiveAlerts(coinSymbol: String) {
+//            val map = activeAlertsState.value
+//            map[coinSymbol] = activeAlert
+//            activeAlertsState.value = map
+//        }
+//
+//
+//        ensureWakeLock()
+//        val lastTriggerTimes = mutableMapOf<String, Long>()
+//        var lastPriceChange: Long = System.currentTimeMillis()
+//        val FREEZE_THRESHOLD_MS = 120_000L
+//
+//        // 🔧 FIX: Use Handler with proper cleanup
+//        val handler = Handler(Looper.getMainLooper())
+//        handlersById[id] = handler // Track for cleanup
+//
+//        val priceFreezeRunnable = object : Runnable {
+//            override fun run() {
+//                if (isDestroying) return
+//
+
+//                val now = System.currentTimeMillis()
+//                if ((now - lastPriceChange) > FREEZE_THRESHOLD_MS) {
+//                    Log.w("PriceMonitor", "⚠️ Price frozen, reloading WebView $id")
+////                    CrashLogger.log(this@FloatingBrowserService, "FloatingService", "⚠️ Price frozen, reloading WebView $id")
+//
+//                    safeReloadWebView(id)
+//                    lastPriceChange = now
+//                }
+//                if (!isDestroying) {
+//                    handler.postDelayed(this, 40_000L)
+//                }
+//            }
+//        }
+//
+//        fun startPriceFreezeWatchdog() {
+//            handler.removeCallbacks(priceFreezeRunnable)
+//            if (!isDestroying) {
+//                handler.postDelayed(priceFreezeRunnable, 15_000L)
+//            }
+//        }
+//
+//        fun stopPriceFreezeWatchdog() {
+//            handler.removeCallbacks(priceFreezeRunnable)
+//        }
+//
+//
+//        // 🔧 FIX: Use WeakReference for context to prevent leaks
+//
+//        fun loadalerts(){
+//            serviceScope.launch(Dispatchers.IO) {
+//                val loaded = DataStorage.alertsLiveData.value ?: emptyList()
+//                val alerts = loaded
+//                withContext(Dispatchers.Main) {
+//                    activeAlert = findAlertsForCoin(holder.coinSymbol ?: return@withContext, alerts, AlertStatus.ACTIVE).toMutableSet()
+//                    syncActiveAlerts(holder.coinSymbol.toString())
+//                }
+//            }
+//        }
+//        loadalerts()
+
+
+//        webView.addJavascriptInterface(object {
+//            @SuppressLint("MissingPermission")
+//            @JavascriptInterface
+//            fun checkPrice(jsonString: String) {
+//                val service = serviceRef.get() ?: return
+//                if (service.isDestroying) return
+//
+//                try {
+//                    val obj = JSONObject(jsonString)
+//                    val symbol = obj.getString("symbol")
+//                    val price = obj.getDouble("price")
+//
+//                    lastPriceChange = System.currentTimeMillis()
+//                    if (activeAlert.isEmpty() ?: return) return
+//
+//                    latestPrices[id] = price
+//                    latestSymbols[id] = symbol
+//                    Log.d("PriceMonitor", "Symbol=$symbol | Price=$price from $id")
+////                    CrashLogger.log(this@FloatingBrowserService, "FloatingService", "🟢 Running check price index=$id")
+//
+//                    val now = System.currentTimeMillis()
+//                    val triggeredNow = mutableSetOf<PriceAlert>()
+//
+//                    activeAlert.removeAll { alert ->
+//                        if (alert.status != AlertStatus.ACTIVE) return@removeAll true
+//
+//                        val lastTime = lastTriggerTimes[alert.id] ?: 0L
+//                        if (now - lastTime < 5000) return@removeAll false
+//
+//                        val triggered = when (alert.type) {
+//                            AlertType.ABOVE -> price > alert.threshold
+//                            AlertType.BELOW -> price < alert.threshold
+//                        }
+//
+//                        if (triggered) {
+//                            triggeredNow += alert
+//                            lastTriggerTimes[alert.id] = now
+//                        }
+//                        false
+//                    }
+//
+//                    if (triggeredNow.isNotEmpty()) {
+//                        triggeredNow.forEach { alert ->
+//                            try {
+//                                Log.d("PriceMonitor", "🎯 Triggered: ${alert.symbol} ${alert.type} ${alert.threshold} @ $price from $id")
+////                                CrashLogger.log(this@FloatingBrowserService, "FloatingService", "🎯 Triggered: ${alert.symbol} ${alert.type} ${alert.threshold} @ $price")
+//                                triggeredAndSaveAlert(alert, price, service)
+//                                service.playAlertSound()
+//                                service.showPriceAlertNotification(alert, price)
+//
+//                                var openPageId: String? = null
+//
+//                                AlertSavedOnPage.forEach { (key, value) ->
+//                                    if (value.contains(alert.id)) {
+//                                        openPageId = key
+//                                        return@forEach
+//                                    }
+//                                }
+//
+//                                Handler(Looper.getMainLooper()).post {
+//                                    if (!service.isDestroying) {
+//                                        holder.overlay.visibility = View.VISIBLE
+//                                        if (currentStates[id] != STATE_MAX && openPageId != null) {
+//                                            switchToState(STATE_MAX, openPageId)
+//                                        }
+//                                    }
+//                                }
+//
+//                            } catch (e: Exception) {
+//                                Log.e("PriceMonitor", "Error: ${e.message}", e)
+////                                CrashLogger.log(this@FloatingBrowserService, "FloatingService", "Error: ${e.message}")
+//
+//                            }
+//                        }
+//
+//                        activeAlert.removeAll(triggeredNow)
+//                        syncActiveAlerts(symbol)
+//                        Log.d("PriceMonitor", "🧹 Removed ${triggeredNow.size} triggered alerts. from $id")
+////                        CrashLogger.log(this@FloatingBrowserService, "FloatingService", "🧹 Removed ${triggeredNow.size} triggered alerts.")
+//
+//                    }
+//
+//                    lastTriggerTimes.entries.removeIf { (_, t) -> now - t > 30_000 }
+//
+//                    if (activeAlert.isEmpty() == true && service::wakeLock.isInitialized && service.wakeLock.isHeld) {
+////                        service.releaseWakeLock()
+//                        stopPriceFreezeWatchdog()
+//                        Log.d("FloatingService", "WakeLock released (no active alerts).")
+////                        CrashLogger.log(this@FloatingBrowserService, "FloatingService", "(no active alerts)..")
+//
+//                    }
+//
+//                } catch (e: Exception) {
+//                    Log.e("PriceMonitor", "Invalid JSON: $jsonString", e)
+//                }
+//            }
+//
+//            @JavascriptInterface
+//            fun onSymbolChange(newSymbol: String) {
+//                val service = serviceRef.get() ?: return
+//                if (service.isDestroying) return
+//
+//                val currentSymbol = latestSymbols[id]
+//                if (newSymbol == currentSymbol) return
+//
+//                Handler(Looper.getMainLooper()).post {
+//                    val loaded = DataStorage.alertsLiveData.value ?: emptyList()
+//                    val alerts = loaded
+//                    activeAlert = findAlertsForCoin(newSymbol, alerts, AlertStatus.ACTIVE).toMutableSet()
+//                    syncActiveAlerts(newSymbol)
+//                    lastTriggerTimes.clear()
+//                    latestSymbols[id] = newSymbol
+//                    holder.coinSymbol = newSymbol
+//                    Log.d("PriceMonitor", "🔁 Symbol changed → ${activeAlert.size} active alerts loaded for $newSymbol from $id")
+////                    CrashLogger.log(this@FloatingBrowserService, "FloatingService", "🔁 Symbol changed → ${activeAlert.size} active alerts loaded for $newSymbol")
+//
+//                }
+//            }
+//
+//            @JavascriptInterface
+//            fun onInjectedSpanClick(spanText: String) {
+//                val service = serviceRef.get() ?: return
+//                if (service.isDestroying) return
+//
+//                Log.d("InstantAlertWatcher", "✅ Injected span clicked: $spanText")
+////                CrashLogger.log(this@FloatingBrowserService, "FloatingService", "✅ Injected span clicked: $spanText")
+//
+//                val regex = Regex("Add alert on ([A-Z0-9]+) at ([\\d,.]+)")
+//                val match = regex.find(spanText)
+//                if (match != null) {
+//                    val symbol = match.groupValues[1]
+//                    val spanPrice = match.groupValues[2].replace(",", "").toDoubleOrNull() ?: 0.0
+//                    Log.d("InstantAlertWatcher", "Parsed symbol=$symbol price=$spanPrice")
+//
+//                    val handler = Handler(Looper.getMainLooper())
+//                    handler.postDelayed({
+//                        if (!service.isDestroying) {
+//                            val latestPrice = latestPrices[id]
+//                            if (latestPrice != null && latestPrice > 0) {
+////                                service.createInstantAlert(id, symbol, spanPrice, latestPrice)
+//                            } else {
+//                                webView.evaluateJavascript("document.title") { title ->
+//                                    val clean = title.trim('"').replace("\\n", "").trim()
+//                                    val priceFromTitle = Regex("[\\d,.]+").find(clean)?.value?.replace(",", "")?.toDoubleOrNull() ?: spanPrice
+////                                    service.createInstantAlert(id, symbol, spanPrice, priceFromTitle)
+//                                }
+//                            }
+//                        }
+//                    }, 100)
+//                }
+//            }
+//        }, "Android")
+
+//import android.Manifest
+//import android.annotation.SuppressLint
+//import android.app.PendingIntent
+//import android.content.Context
+//import android.content.Intent
+//import android.media.MediaPlayer
+//import android.media.RingtoneManager
+//import android.util.Log
+//import androidx.annotation.RequiresPermission
+//import androidx.core.app.NotificationCompat
+//import androidx.core.app.NotificationManagerCompat
+//import androidx.core.net.toUri
+//import com.example.floatingweb.R
+//import com.example.floatingweb.helpers.PriceAlert
+//import com.example.floatingweb.services.FloatingBrowserService
+//
+
+// Use a single adapter and update data inside it
+//        val adapter = ArrayAdapter(
+//            this,
+//            android.R.layout.simple_dropdown_item_1line,
+//            mutableListOf<String>()
+//        )
+//        nameInput.setAdapter(adapter)
+//        nameInput.setOnClickListener {
+//            val key = nameInput.text.toString().trim()
+//            val suggestions = recommendationMap[key]
+//            if (suggestions != null) {
+//                val adapter = ArrayAdapter(
+//                    this,
+//                    android.R.layout.simple_dropdown_item_1line,
+//                    suggestions
+//                )
+//                nameInput.setAdapter(adapter)
+//                nameInput.showDropDown()
+//            }
+//        }
+
+// Handle text input
+//        nameInput.addTextChangedListener(object : TextWatcher {
+//            override fun afterTextChanged(s: Editable?) {}
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                val key = s?.toString()?.trim()
+//                val suggestions = recommendationMap[key]
+//                if (suggestions != null) {
+//                    adapter.clear()
+//                    adapter.addAll(suggestions)
+//                    adapter.notifyDataSetChanged()
+//                    if (!nameInput.isPopupShowing) {
+//                        nameInput.showDropDown()
+//                    }
+//                }
+//            }
+//        })
+
+//@RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
+//@SuppressLint("UnspecifiedImmutableFlag")
+//private fun showPriceAlertNotification(alert: PriceAlert, currentPrice: Double) {
+//    if (isDestroying) return
+//
+//    val stopIntent = Intent(this, FloatingBrowserService::class.java).apply {
+//        action = "STOP_ALERT"
+//        putExtra("alertId", alert.id)
+//    }
+//    val stopPendingIntent = PendingIntent.getService(
+//        this, alert.id.hashCode(), stopIntent,
+//        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+//    )
+//
+//    val notification = NotificationCompat.Builder(this, "price_alert_channel")
+//        .setSmallIcon(R.drawable.ic_launcher_foreground)
+//        .setContentTitle("Price Alert: ${alert.symbol}")
+//        .setContentText("${alert.type} ${alert.threshold}, Current Price: $currentPrice")
+//        .setPriority(NotificationCompat.PRIORITY_HIGH)
+//        .setCategory(NotificationCompat.CATEGORY_ALARM)
+//        .addAction(R.drawable.ic_launcher_foreground, "Stop Sound", stopPendingIntent)
+//        .setAutoCancel(false)
+//        .build()
+//
+//    try {
+//        NotificationManagerCompat.from(this).notify(alert.id.hashCode(), notification)
+//    } catch (e: Exception) {
+//        Log.e("FloatingService", "Error showing notification: ${e.message}")
+////            CrashLogger.log(this, "FloatingService", "Error showing notification: ${e.message}")
+//
+//    }
+//}
+
+//private fun playAlertSound() {
+//    if (isDestroying) return
+//
+//    val prefs = getSharedPreferences("price_alert", Context.MODE_PRIVATE)
+//    val uriString = prefs.getString("custom_sound_uri", null)
+//    val alarmUri = uriString?.toUri() ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+//    Log.d("sound", "playing alert sound")
+//
+//    try {
+//        mediaPlayer?.stop()
+//        mediaPlayer?.release()
+//        mediaPlayer = null
+//
+//        mediaPlayer = MediaPlayer().apply {
+//            setDataSource(this@FloatingBrowserService, alarmUri)
+//            isLooping = true
+//            prepare()
+//            start()
+//        }
+//    } catch (e: Exception) {
+//        Log.e("FloatingService", "Error playing alert sound: ${e.message}")
+////            CrashLogger.log(this, "FloatingService", "Error showing notification: ${e.message}")
+//
+//    }
+//}
+//
+
+
+import android.view.WindowManager
+
+//private fun cloneLayoutParams(src: WindowManager.LayoutParams): WindowManager.LayoutParams {
+//    return WindowManager.LayoutParams().apply {
+//        width = src.width
+//        height = src.height
+//        x = src.x
+//        y = src.y
+//        gravity = src.gravity
+//        flags = src.flags
+//        type = src.type
+//        format = src.format
+//        windowAnimations = src.windowAnimations
+//        token = src.token
+//        packageName = src.packageName
+//        alpha = src.alpha
+//    }
+//}
 
 
 
+//import android.annotation.SuppressLint
+//import android.graphics.Color
+//import android.graphics.PixelFormat
+//import android.graphics.Typeface
+//import android.graphics.drawable.GradientDrawable
+//import android.util.Log
+//import android.view.Gravity
+//import android.view.MotionEvent
+//import android.view.View
+//import android.view.ViewGroup
+//import android.view.WindowManager
+//import android.widget.Button
+//import android.widget.FrameLayout
+//import android.widget.LinearLayout
+//import android.widget.ScrollView
+//import android.widget.Space
+//import android.widget.TextView
+//import androidx.core.graphics.toColorInt
+//import androidx.core.view.setPadding
+//import kotlin.collections.component1
+//import kotlin.collections.component2
+//import kotlin.collections.set
+//
+//@SuppressLint("InflateParams", "ClickableViewAccessibility")
+//private fun toggleOverlayBoxWindow(forceOpen: Boolean = false) {
+//    if (isDestroying) return
+////        CrashLogger.log(this, "FloatingService", "⚡ Entered [toggle overlayBoxWindow] ")
+//
+//
+//    toggleHide(true)
+//    if (overlayBoxWindow != null && !forceOpen) {
+//        attachedInBox.forEach { id ->
+//            val holder = overlaysById[id] ?: return@forEach
+//            val overlay = holder.overlay
+//
+//            overlay.setOnTouchListener(null)
+//            overlay.isClickable = true
+//            holder.webView.setOnTouchListener { _, event ->
+//                if (event.action == MotionEvent.ACTION_DOWN && !isDestroying) {
+//                    requestOverlayFocus(id)
+//                }
+//                false
+//            }
+//
+//            try { (overlay.parent as? ViewGroup)?.removeView(overlay) } catch (_: Exception) {}
+//            val params = savedWindowParams[id] ?: defaultMiniParams(id)
+//            safeAttachToWindow(id, params)
+//        }
+//        attachedInBox.clear()
+//        savedBoxWrappers.clear()
+//
+//        try {
+//            overlayBoxWindow?.let { windowManager?.removeViewImmediate(it) }
+//        } catch (_: Exception) {}
+//        overlayBoxWindow = null
+//        overlayBoxWindowParams = null
+//        return
+//    }
+//
+//    if (overlayBoxWindow != null && forceOpen) {
+//        try { windowManager?.updateViewLayout(overlayBoxWindow, overlayBoxWindowParams) } catch (_: Exception) {}
+//        return
+//    }
+//
+//    val box = FrameLayout(this).apply {
+//        setBackgroundColor(Color.BLACK)
+//        elevation = dpToPx(12).toFloat()
+//    }
+//
+//    val params = WindowManager.LayoutParams(
+//        WindowManager.LayoutParams.MATCH_PARENT,
+//        WindowManager.LayoutParams.MATCH_PARENT,
+//        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+//        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+//                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
+//                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
+//                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+//        PixelFormat.TRANSLUCENT
+//    ).apply {
+//        gravity = Gravity.END or Gravity.CENTER_VERTICAL
+//        x = dpToPx(8)
+//    }
+//
+//    val header = LinearLayout(this).apply {
+//        orientation = LinearLayout.HORIZONTAL
+//        setPadding(dpToPx(8))
+//        setBackgroundColor("#FFBB86FC".toColorInt())
+//        layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, dpToPx(48))
+//    }
+//
+//    val title = TextView(this).apply {
+//        text = "Overlays"
+//        textSize = 16f
+//        setTypeface(null, Typeface.BOLD)
+//        setTextColor(Color.WHITE)
+//        setPadding(dpToPx(8), 6, dpToPx(8), 6)
+//        layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+//    }
+//
+//    val destroyBtn = Button(this).apply {
+//        text = "Destroy 💣"
+//        textSize = 16f
+//        setTextColor(Color.RED)
+//        setBackgroundColor("#FFBB86FC".toColorInt())
+//        setPadding(dpToPx(8), 6, dpToPx(8), 6)
+//        setOnClickListener { destroyServiceCompletely() }
+//    }
+//
+//    val close = Button(this).apply {
+//        text = "Hide All ● "
+//        textSize = 16f
+//        setTextColor(Color.BLACK)
+//        setBackgroundColor(Color.TRANSPARENT)
+//        setPadding(dpToPx(8), 6, dpToPx(8), 6)
+//        setOnClickListener {
+////                CrashLogger.log(this@FloatingBrowserService, "FloatingService", "⚡ Clicked [Hide All]")
+//            restoreOverlayToMini()
+////                if (overlayBoxWindow != null && !forceOpen) {
+////                    attachedInBox.forEach { id ->
+////                        val overlay = overlaysById[id]?.overlay ?: return@forEach
+////
+////                        overlay.setOnTouchListener(null)
+////                        overlay.isClickable = true
+////                        overlaysById[id]?.webView?.setOnTouchListener { _, event ->
+////                            if (event.action == MotionEvent.ACTION_DOWN && !isDestroying) {
+////                                requestOverlayFocus(id)
+////                            }
+////                            false
+////                        }
+////
+////                        try { (overlay.parent as? ViewGroup)?.removeView(overlay) } catch (_: Exception) {}
+////                        val miniParams = defaultMiniParams(id)
+////                        safeAttachToWindow(id, miniParams)
+////                        switchToState(STATE_MINI, id)
+////                    }
+////                    attachedInBox.clear()
+////                    savedBoxWrappers.clear()
+////                    toggleHide(false)
+////
+////                    try {
+////                        overlayBoxWindow?.let { windowManager?.removeViewImmediate(it) }
+////                    } catch (e: Exception) {
+//////                        CrashLogger.log(this@FloatingBrowserService, "FloatingService", "Hide all err ${e.message}")
+////                    }
+////                    overlayBoxWindow = null
+////                    overlayBoxWindowParams = null
+////
+////                }
+//        }
+//    }
+//
+//    val spacer = Space(this).apply {
+//        layoutParams = LinearLayout.LayoutParams(0, 0, 1f)
+//    }
+//
+//    header.addView(title)
+//    header.addView(destroyBtn)
+//    header.addView(spacer)
+//    header.addView(close)
+//    box.addView(header)
+//    // ... header setup as before ...
+//    // header, destroyBtn, close, spacer, title (unchanged)
+//
+//    val scroll = ScrollView(this).apply {
+//        layoutParams = FrameLayout.LayoutParams(
+//            FrameLayout.LayoutParams.MATCH_PARENT,
+//            FrameLayout.LayoutParams.MATCH_PARENT
+//        ).apply { topMargin = dpToPx(48) }
+//        isVerticalScrollBarEnabled = true
+//        overScrollMode = View.OVER_SCROLL_IF_CONTENT_SCROLLS
+//        isFocusable = true
+//        isFocusableInTouchMode = true
+//        isClickable = true
+//    }
+//
+//    val inner = LinearLayout(this).apply {
+//        orientation = LinearLayout.VERTICAL
+//        setPadding(dpToPx(8))
+//    }
+//
+//    overlaysById.forEach { (id, holder) ->
+//        if (!savedWindowParams.containsKey(id)) {
+//            (holder.overlay.layoutParams as? WindowManager.LayoutParams)?.let { orig ->
+//                savedWindowParams[id] = cloneLayoutParams(orig)
+//            }
+//        }
+//
+//        safeDetachView(id)
+//
+//        val wrapper = savedBoxWrappers[id] ?: FrameLayout(this).apply {
+//            layoutParams = LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                dpToPx(220)
+//            ).apply { bottomMargin = dpToPx(8) }
+//            background = GradientDrawable().apply {
+//                setColor(Color.WHITE)
+//                setStroke(1, Color.LTGRAY)
+//                cornerRadius = dpToPx(8).toFloat()
+//            }
+//            elevation = dpToPx(3).toFloat()
+//        }.also { savedBoxWrappers[id] = it }
+//
+//        holder.overlay.setOnTouchListener { _, _ -> false }
+//        holder.overlay.isClickable = false
+//
+//        holder.webView.apply {
+//            setOnTouchListener { _, _ -> false }
+//            isVerticalScrollBarEnabled = false
+//            isHorizontalScrollBarEnabled = false
+//        }
+//
+//        holder.overlay.layoutParams = FrameLayout.LayoutParams(
+//            FrameLayout.LayoutParams.MATCH_PARENT,
+//            FrameLayout.LayoutParams.MATCH_PARENT
+//        )
+//
+//        val touchInterceptor = View(this).apply {
+//            layoutParams = FrameLayout.LayoutParams(
+//                FrameLayout.LayoutParams.MATCH_PARENT,
+//                FrameLayout.LayoutParams.MATCH_PARENT
+//            )
+//            setBackgroundColor(Color.TRANSPARENT)
+//            isClickable = true
+//            setOnTouchListener { _, event ->
+//                if (event.action == MotionEvent.ACTION_UP && !isDestroying) {
+//                    holder.bubble.performClick()
+//                }
+//                false
+//            }
+//        }
+//
+//        try {
+//            (wrapper.parent as? ViewGroup)?.removeView(wrapper)
+//            if (wrapper.childCount > 0) wrapper.removeAllViews()
+//            wrapper.addView(holder.overlay)
+//            wrapper.addView(touchInterceptor)
+//        } catch (e: Exception) {
+//            try {
+//                (holder.overlay.parent as? ViewGroup)?.removeView(holder.overlay)
+//                wrapper.removeAllViews()
+//                wrapper.addView(holder.overlay)
+//                wrapper.addView(touchInterceptor)
+//            } catch (_: Exception) {}
+//        }
+//
+//        inner.addView(wrapper)
+//        attachedInBox.add(id)
+//    }
+//
+//    scroll.addView(inner)
+//    box.addView(scroll)
+//
+//    try {
+//        windowManager?.addView(box, params)
+//        overlayBoxWindow = box
+//        overlayBoxWindowParams = params
+//        box.translationX = dpToPx(340).toFloat()
+//        box.animate().translationX(0f).setDuration(200).start()
+//    } catch (e: Exception) {
+//        Log.e("FloatingService", "Failed to add sideBox window: ${e.message}")
+////            CrashLogger.log(this, "FloatingService", "Failed to add sideBox window: ${e.message}")
+//
+//        attachedInBox.forEach { id ->
+//            val holder = overlaysById[id] ?: return@forEach
+//            try { (holder.overlay.parent as? ViewGroup)?.removeView(holder.overlay) } catch (_: Exception) {}
+//            safeAttachToWindow(id, savedWindowParams[id] ?: defaultMiniParams(id))
+//        }
+//        attachedInBox.clear()
+//    }
+//}
+//
+//
 
 
 
